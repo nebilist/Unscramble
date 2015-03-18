@@ -1,3 +1,8 @@
-//testing to see if this works
+#include <iostream>
+using namespace std;
 
-//testing again 3/17/2015 6:14 pm
+int main(){
+	cout<<"You must really, really, love to test. I love it too. There's just one thing we need to take care of.\n";
+	cin.get();
+	return 0;
+}
