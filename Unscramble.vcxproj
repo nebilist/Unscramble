@@ -13,6 +13,9 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="words.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0442007B-740B-4D6D-B947-E8CAEA6E7F4A}</ProjectGuid>
     <RootNamespace>Unscramble</RootNamespace>
