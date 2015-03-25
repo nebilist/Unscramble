@@ -22,12 +22,12 @@ int Unscramble::hash(string key){
 	for(int i=0; i<key.length();i++){
 		value += key[i];
 	}
-	return value%tableSize;
+	return value;
 }
 int main(){
 	//hash the entered word
 	//use the number to look up place in array
-	cout <<"1. Enter Word\n2. Exit\n";
+	//cout <<"1. Enter Word\n2. Exit\n";
 	Unscramble word;
 	int count = 1;
 	ifstream file("words.txt");
@@ -36,6 +36,7 @@ int main(){
 		cout << count <<". "<<str << " " << word.hash(str)<< "\n";
 		count++;
 	}
+	cout << word.hash("word");
 	cin.get();
 	return 0;
 }
