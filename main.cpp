@@ -3,40 +3,101 @@
 #include <string>
 
 using namespace std;
-const int tableSize = 100;
 //this would be so impressive if it could read an html file instead of a txt file
 
-class Unscramble{
+class Dictionary{
 	struct NODE{
-		char word[10];
+		int key;
+		string word;
 		NODE* next;
 	};
-
+	NODE* head;
 public:
-	void EnterWord();
-	int hash(string key);
+	Dictionary(){
+		head = NULL;
+	}
+	void Load(string word);
+	void Display();
+	void Search(string word);
+	
 };
 
-int Unscramble::hash(string key){
-	int value = 0;
-	for(int i=0; i<key.length();i++){
-		value += key[i];
+void Dictionary::Search(string word){
+	//Next steps:
+	//Enter the word and take the key(make a hash function, i guess)
+	//compare the key to all the ones in the nodes
+	//display all that matches
+	//find out next steps from that
+
+	//hash
+	int value;
+	for(int i=0; i<word.length();i++){
+		value += word[i];
 	}
-	return value;
+
+	NODE* nodePtr;
+	nodePtr = head;
+	while(nodePtr){
+		if(nodePtr->key==value){
+			cout << nodePtr->word;
+		}
+		nodePtr = nodePtr->next;
+	}
+
 }
-int main(){
-	//hash the entered word
-	//use the number to look up place in array
-	//cout <<"1. Enter Word\n2. Exit\n";
-	Unscramble word;
-	int count = 1;
-	ifstream file("words.txt");
-	string str;
-	while(getline(file, str)){
-		cout << count <<". "<<str << " " << word.hash(str)<< "\n";
-		count++;
+void Dictionary::Display(){
+	//We've done this before
+	NODE* nodePtr;
+	nodePtr = head;
+	while(nodePtr){
+		cout << "Word: "<< nodePtr->word <<" Key: "<<nodePtr->key<<"\n";
+		nodePtr = nodePtr->next;
 	}
-	cout << word.hash("word");
+}
+void Dictionary::Load(string word){
+	
+	NODE* newNode = new NODE;
+	NODE* nodePtr;
+	int value = 0;
+
+	//This loads a word in the list into a node;
+	newNode->word = word;
+	
+	// This creates a hash key
+	for(int i=0; i<word.length();i++){
+		value += word[i];
+	}
+	// and enters the created key into the node
+	newNode->key = value;
+
+	newNode->next = NULL;
+	if(!head){
+		head = newNode;
+	}
+	else{
+		nodePtr = head;
+		while(nodePtr->next!=NULL){
+			nodePtr=nodePtr->next;
+		}
+		nodePtr->next = newNode;
+	}
+}
+
+int main(){
+	Dictionary word;
+	string str, unscrambled;
+
+	ifstream file("words.txt");
+	while(getline(file, str)){
+		word.Load(str);
+	}
+
+	cout <<"Enter word: \n";
+	cin >> unscrambled;
+	word.Search(unscrambled);
+	//Current choices
+
+	
 	cin.get();
 	return 0;
 }
