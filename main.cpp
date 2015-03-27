@@ -16,23 +16,26 @@ public:
 	Dictionary(){
 		head = NULL;
 	}
+	int hash(string word);
 	void Load(string word);
 	void Display();
+
+
 	void Search(string word);
 	
 };
+int Dictionary::hash(string word){
+	int value = 0;
+	
+	for(int i=0; i<word.length();i++){
+		value += word[i];
+	}
 
-void Dictionary::Search(string word){
-	//Next steps:
-	//Enter the word and take the key(make a hash function, i guess)
-	//compare the key to all the ones in the nodes
-	//display all that matches
-	//find out next steps from that
-
-	//hash
+	return value;
+	
 }
+
 void Dictionary::Display(){
-	//We've done this before
 	NODE* nodePtr;
 	nodePtr = head;
 	while(nodePtr){
@@ -44,18 +47,12 @@ void Dictionary::Load(string word){
 	
 	NODE* newNode = new NODE;
 	NODE* nodePtr;
-	int value = 0;
-
-	//This loads a word in the list into a node;
-	newNode->word = word;
 	
-	// This creates a hash key
-	//i hope to make this into a function instead, so I can use the same function for the unscrambled word
-	for(int i=0; i<word.length();i++){
-		value += word[i];
-	}
-	// and enters the created key into the node
-	newNode->key = value;
+	//Separate functions?
+		//This loads a word in the list into a node;
+		newNode->word = word;
+		//create a hash value and loads it too
+		newNode->key = hash(word);
 
 	newNode->next = NULL;
 	if(!head){
@@ -69,7 +66,17 @@ void Dictionary::Load(string word){
 		nodePtr->next = newNode;
 	}
 }
+void Dictionary::Search(string word){
+	//maybe, make the unscrambled word into the head node.
 
+	//Next steps:
+	//Enter the word and take the key(make a hash function, i guess)
+	//compare the key to all the ones in the nodes
+	//display all that matches
+	//find out next steps from that
+
+	//hash
+}
 int main(){
 	Dictionary word;
 	string str, unscrambled;
