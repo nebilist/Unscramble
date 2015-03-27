@@ -3,8 +3,6 @@
 #include <string>
 
 using namespace std;
-//this would be so impressive if it could read an html file instead of a txt file
-
 class Dictionary{
 	struct NODE{
 		int key;
@@ -15,15 +13,36 @@ class Dictionary{
 public:
 	Dictionary(){
 		head = NULL;
+		string str;
+		ifstream file("words.txt");
+		while(getline(file,str)){
+			Load(str);
+		}
 	}
 	int hash(string word);
 	void Load(string word);
 	void Display();
-
+	//:)
+	//:))
 
 	void Search(string word);
 	
 };
+int main(){
+	Dictionary word;
+	string unscrambled;
+	//**Place this in constructor**/
+
+	//cout <<"Enter word: \n";
+	//cin >> unscrambled;
+	//word.Search(unscrambled);
+
+	word.Display();
+
+	cin.get();
+	return 0;
+}
+
 int Dictionary::hash(string word){
 	int value = 0;
 	
@@ -76,22 +95,4 @@ void Dictionary::Search(string word){
 	//find out next steps from that
 
 	//hash
-}
-int main(){
-	Dictionary word;
-	string str, unscrambled;
-
-	ifstream file("words.txt");
-	while(getline(file, str)){
-		word.Load(str);
-	}
-
-	//cout <<"Enter word: \n";
-	//cin >> unscrambled;
-	//word.Search(unscrambled);
-
-	word.Display();
-
-	cin.get();
-	return 0;
 }
