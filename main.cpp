@@ -30,20 +30,6 @@ void Dictionary::Search(string word){
 	//find out next steps from that
 
 	//hash
-	int value;
-	for(int i=0; i<word.length();i++){
-		value += word[i];
-	}
-
-	NODE* nodePtr;
-	nodePtr = head;
-	while(nodePtr){
-		if(nodePtr->key==value){
-			cout << nodePtr->word;
-		}
-		nodePtr = nodePtr->next;
-	}
-
 }
 void Dictionary::Display(){
 	//We've done this before
@@ -64,6 +50,7 @@ void Dictionary::Load(string word){
 	newNode->word = word;
 	
 	// This creates a hash key
+	//i hope to make this into a function instead, so I can use the same function for the unscrambled word
 	for(int i=0; i<word.length();i++){
 		value += word[i];
 	}
@@ -92,12 +79,12 @@ int main(){
 		word.Load(str);
 	}
 
-	cout <<"Enter word: \n";
-	cin >> unscrambled;
-	word.Search(unscrambled);
-	//Current choices
+	//cout <<"Enter word: \n";
+	//cin >> unscrambled;
+	//word.Search(unscrambled);
 
-	
+	word.Display();
+
 	cin.get();
 	return 0;
 }
