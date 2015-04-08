@@ -3,6 +3,8 @@
 #include <string>
 
 using namespace std;
+
+const int TABLELENGTH = 100;
 class Dictionary{
 	struct NODE{
 		int key;
@@ -10,6 +12,7 @@ class Dictionary{
 		NODE* next;
 	};
 	NODE* head;
+	int wordHash;
 public:
 	Dictionary(){
 		head = NULL;
@@ -19,6 +22,7 @@ public:
 			Load(str);
 		}
 	}
+	
 	int hash(string word);
 	void Load(string word);
 	void Display();
@@ -31,14 +35,14 @@ public:
 int main(){
 	Dictionary word;
 	string unscrambled;
-	//**Place this in constructor**/
-
-	//cout <<"Enter word: \n";
-	//cin >> unscrambled;
-	//word.Search(unscrambled);
-
-	word.Display();
-
+	while(true){//i know this is illegal, only for testing purposes
+		cout <<"~~~~~~\n";
+		cout<< "Enter word: \n";
+		cin>>unscrambled;
+		
+		word.Search(unscrambled);
+		cout <<"~~~~~~\n";
+	}
 	cin.get();
 	return 0;
 }
@@ -50,7 +54,7 @@ int Dictionary::hash(string word){
 		value += word[i];
 	}
 
-	return value;
+	return value%TABLELENGTH;
 	
 }
 
@@ -86,6 +90,19 @@ void Dictionary::Load(string word){
 	}
 }
 void Dictionary::Search(string word){
+	wordHash = hash(word);//stores in a temp var in class
+	
+	NODE* nodePtr;
+	nodePtr = head;
+	while(nodePtr){
+		if(wordHash==nodePtr->key){
+			cout<<"Entry: "<<word<<" Word: "<<nodePtr->word<<"\n";
+		}
+		nodePtr = nodePtr->next;
+		
+	}
+	
+
 	//maybe, make the unscrambled word into the head node.
 
 	//Next steps:
