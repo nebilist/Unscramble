@@ -28,10 +28,23 @@ public:
 	void Display();
 	//:)
 	//:))
-
+	string removeSpaces(string input);//need to fix this function
 	void Search(string word);
 	
 };
+
+string Dictionary::removeSpaces(string input)
+{
+  int length = input.length();
+  string temp = input;
+  for (int i = 0; i < length; i++) {
+     if(temp[i] == ' '){
+		 temp.erase(i, 1);
+	 }
+  }
+  return temp;
+}
+
 int main(){
 	Dictionary word;
 	string unscrambled;
@@ -39,7 +52,6 @@ int main(){
 		cout <<"~~~~~~\n";
 		cout<< "Enter word: \n";
 		cin>>unscrambled;
-		
 		word.Search(unscrambled);
 		cout <<"~~~~~~\n";
 	}
@@ -54,7 +66,7 @@ int Dictionary::hash(string word){
 		value += word[i];
 	}
 
-	return value%TABLELENGTH;
+	return value;
 	
 }
 
@@ -94,6 +106,9 @@ void Dictionary::Search(string word){
 	
 	NODE* nodePtr;
 	nodePtr = head;
+
+	//if wordhash equals key, add word to end of an array, then compare them?
+	//char instead of string?
 	while(nodePtr){
 		if(wordHash==nodePtr->key){
 			cout<<"Entry: "<<word<<" Word: "<<nodePtr->word<<"\n";
