@@ -10,17 +10,8 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="words.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Dictionary.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0442007B-740B-4D6D-B947-E8CAEA6E7F4A}</ProjectGuid>
+    <ProjectGuid>{714B4780-3196-4532-83BE-A6B7B382589E}</ProjectGuid>
     <RootNamespace>Unscramble</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -68,6 +59,15 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Unscramble.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="UNSCRAMBLE_H.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="words.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
